@@ -158,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
                             outputStream = BtSocket.getOutputStream();
                             connection_text.setText("CONNECTED");
                             firsttime=false;
+                            Toast.makeText(getBaseContext(), "Connected", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             Toast.makeText(getBaseContext(), "OOPS! Somethin went wrong ;P;", Toast.LENGTH_SHORT).show();
                             connection_text.setText("NOT CONNECTED");
@@ -174,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
                         conn.setChecked(false);
                         connection_text.setText("SOMETHIING's WRONG ;P");
                     }
+                    Toast.makeText(getBaseContext(), "Disconnected", Toast.LENGTH_SHORT).show();
                 }
                 oldthrust=0;
             }

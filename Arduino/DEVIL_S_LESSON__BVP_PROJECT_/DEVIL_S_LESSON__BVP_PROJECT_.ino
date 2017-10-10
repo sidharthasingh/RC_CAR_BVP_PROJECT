@@ -2,9 +2,9 @@
 #include<SoftwareSerial.h>
 
 #define SERVO_PIN 10 // The digital pin to which the Servo is attached
-#define BT_PIN1 4 // The digital pin to which the HC05 TX module is connected - TX
-#define BT_PIN2 5 // The digital pin to which the HC05 RX module is connected - RX
-#define SERVO_PIN 4 // The digital pin to which the servo motor is connected
+#define BT_PINTX 4 // The digital pin to which the HC05 TX module is connected - TX
+#define BT_PINRX 5 // The digital pin to which the HC05 RX module is connected - RX
+#define BT_BAUD_RATE  115200 // The baud rate at which the HC05 module is operating. Default is 9600 (May be :-P)
 /*
   DIRECTIONAL LOGIC
   the 'dir' variable is for the direction being received
@@ -24,7 +24,7 @@ int throttle; // Decides the speed of the motors
 int dir; // The direction in which the car has to move (The angles for the servo)
 unsigned char val_received;
 
-SoftwareSerial BT(BT_PIN1, BT_PIN2); // The BT object. A reference to the HC05 Serial module
+SoftwareSerial BT(BT_PINTX, BT_PINRX); // The BT object. A reference to the HC05 Serial module
 Servo serv; // This is the motor connected to the steering
 
 void refresh(); // This function re-syncs the global values to the whole system
@@ -34,6 +34,7 @@ void setup() {
   Serial.println("Setup() called");
 
   serv.attach(SERVO_PIN);
+   BT.begin(BT_BAUD_RATE);
   
   Serial.println("Setup() end");
 }
