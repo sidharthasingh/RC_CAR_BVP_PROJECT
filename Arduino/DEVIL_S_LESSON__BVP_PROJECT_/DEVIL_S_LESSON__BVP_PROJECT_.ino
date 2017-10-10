@@ -4,18 +4,24 @@
 #define SERVO_PIN 10 // The digital pin to which the Servo is attached
 #define BT_PIN1 2 // The digital pin to which the HC05 TX module is connected - TX
 #define BT_PIN2 3 // The digital pin to which the HC05 RX module is connected - RX
+#define SERVO_PIN 4 // The digital pin to which the servo motor is connected
 
 /* The global variable that have been defined for the whole code*/
 int throttle; // Decides the speed of the motors
-SoftwareSerial BT(BT_PIN1, BT_PIN2); // The BT object. A reference to the HC05 Serial module
 int dir; // The direction in which the car has to move (The angles for the servo)
 unsigned char val_received;
+
+SoftwareSerial BT(BT_PIN1, BT_PIN2); // The BT object. A reference to the HC05 Serial module
+Servo serv; // This is the motor connected to the steering
 
 void refresh(); // This function re-syncs the global values to the whole system
 
 void setup() {
   Serial.begin(9600);
   Serial.println("Setup() called");
+
+  serv.attach(SERVO_PIN);
+  
   Serial.println("Setup() end");
 }
 
