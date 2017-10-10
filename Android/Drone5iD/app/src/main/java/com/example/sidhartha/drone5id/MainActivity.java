@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         layout_joystick.setOnTouchListener(new OnTouchListener() {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 js.drawStick(arg1);
+                if(conn.isChecked()){
                     if (arg1.getAction() == MotionEvent.ACTION_DOWN
                             || arg1.getAction() == MotionEvent.ACTION_MOVE) {
                         textView1.setText(String.valueOf(js.position_x));
@@ -126,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     } else if (arg1.getAction() == MotionEvent.ACTION_UP) {
                         sendData(0);
                     }
+                }
                     return true;
                 }
         });
