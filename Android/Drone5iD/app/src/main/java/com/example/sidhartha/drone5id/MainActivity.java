@@ -90,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         layout_joystick.setOnTouchListener(new OnTouchListener() {
             public boolean onTouch(View arg0, MotionEvent arg1) {
-                if (thrst.isChecked()) {
-                    js.drawStick(arg1);
+                js.drawStick(arg1);
                     if (arg1.getAction() == MotionEvent.ACTION_DOWN
                             || arg1.getAction() == MotionEvent.ACTION_MOVE) {
                         textView1.setText(String.valueOf(js.position_x));
@@ -124,14 +123,8 @@ public class MainActivity extends AppCompatActivity {
                             olddirection = direction;
                         }
                     } else if (arg1.getAction() == MotionEvent.ACTION_UP) {
-                        textView1.setText("");
-                        textView2.setText("");
-                        textView3.setText("");
-                        textView4.setText("");
-                        textView5.setText("");
                         sendData(0);
                     }
-                }
                     return true;
                 }
         });
@@ -139,9 +132,9 @@ public class MainActivity extends AppCompatActivity {
         conn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    connection_text.setText("LOADING...");
+                    Toast.makeText(getBaseContext(), "Connection protocol started", Toast.LENGTH_SHORT).show();
                     if (mBtAdapter == null) {
-                        Toast.makeText(getBaseContext(), "Bluetooth Not supported", Toast.LENGTH_SHORT);
+                        Toast.makeText(getBaseContext(), "Bluetooth Not supported", Toast.LENGTH_SHORT).show();
                         conn.setChecked(false);
                         connection_text.setText("NOT SUPPORTED");
                     } else {
@@ -166,12 +159,13 @@ public class MainActivity extends AppCompatActivity {
                             connection_text.setText("CONNECTED");
                             firsttime=false;
                         } catch (Exception e) {
-                            Toast.makeText(getBaseContext(), "OOPS! Somethin went wrong ;P;", Toast.LENGTH_SHORT);
+                            Toast.makeText(getBaseContext(), "OOPS! Somethin went wrong ;P;", Toast.LENGTH_SHORT).show();
                             connection_text.setText("NOT CONNECTED");
                             conn.setChecked(false);
                         }
                     }
                 } else {
+                    Toast.makeText(getBaseContext(), "Disconnecting", Toast.LENGTH_SHORT).show();
                     connection_text.setText("LOADING...");
                     try {
                         BtSocket.close();
@@ -190,9 +184,11 @@ public class MainActivity extends AppCompatActivity {
                 if (isChecked) {
                     if(!firsttime)
                         sendData(9);
-                    else
+                    else {
+                        Toast.makeText(getBaseContext(),"Not connected", Toast.LENGTH_LONG).show();
                         thrst.setChecked(false);
-                    // The toggle is enabled
+                    }
+                        // The toggle is enabled
                 } else {
                     // The toggle is disabled
                     sendData(9);

@@ -2,8 +2,8 @@
 #include<SoftwareSerial.h>
 
 #define SERVO_PIN 10 // The digital pin to which the Servo is attached
-#define BT_PIN1 2 // The digital pin to which the HC05 TX module is connected - TX
-#define BT_PIN2 3 // The digital pin to which the HC05 RX module is connected - RX
+#define BT_PIN1 4 // The digital pin to which the HC05 TX module is connected - TX
+#define BT_PIN2 5 // The digital pin to which the HC05 RX module is connected - RX
 #define SERVO_PIN 4 // The digital pin to which the servo motor is connected
 /*
   DIRECTIONAL LOGIC
@@ -42,7 +42,8 @@ void loop() {
   if(BT.available())
   {
      val_received = BT.read();
-     Serial.println("Value received : "+val_received);
+     Serial.print("Value received : ");
+     Serial.println(val_received);
      if(val_received>=0 && val_received<=8)
      {
         // Code for changing the direction;
