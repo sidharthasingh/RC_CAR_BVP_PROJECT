@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         final Switch conn=(Switch)findViewById(R.id.switch1);
         final Switch gps=(Switch)findViewById(R.id.switch2);
         final Switch thrst=(Switch)findViewById(R.id.switch3);
+        final String MAC_ADDRESS = "98:D3:34:90:83:DE";
 
 
         layout_joystick = (RelativeLayout)findViewById(R.id.layout_joystick);
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent enableIntent = new Intent(mBtAdapter.ACTION_REQUEST_ENABLE);
                             startActivityForResult(enableIntent, 1);
                         }
-                        BTdev = mBtAdapter.getRemoteDevice("98:D3:34:90:83:DE");
+                        BTdev = mBtAdapter.getRemoteDevice(MAC_ADDRESS);
                         try {
                             BtSocket = BTdev.createRfcommSocketToServiceRecord(UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));
                             BtSocket.connect();
