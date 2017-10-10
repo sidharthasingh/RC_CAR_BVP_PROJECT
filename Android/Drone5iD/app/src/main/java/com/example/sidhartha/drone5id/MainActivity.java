@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     thrustView.setText((int)(sl.thrust * 100) + " % : THRUST");
                     if(oldthrust!=(int)(sl.thrust*100)) {
-                        sendData((int) (sl.thrust * 100)+11);
+                        sendData((int) (sl.thrust * 100)+9);
                         oldthrust=(int)(sl.thrust*100);
                     }
                 }
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                             textView5.setText("Center ");
                         }
                         if (direction != olddirection) {
-                            sendData(direction+2);
+                            sendData(direction);
                             olddirection = direction;
                         }
                     } else if (arg1.getAction() == MotionEvent.ACTION_UP) {
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                         textView3.setText("");
                         textView4.setText("");
                         textView5.setText("");
-                        sendData(2);
+                        sendData(0);
                     }
                 }
                     return true;
@@ -189,35 +189,19 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if(!firsttime)
-                        sendData(11);
+                        sendData(9);
                     else
                         thrst.setChecked(false);
                     // The toggle is enabled
                 } else {
                     // The toggle is disabled
-                    sendData(11);
+                    sendData(9);
                     sl.setThrust(0);
                     thrustView.setText(sl.thrust * 100 + " % : THRUST");
                 }
             }
         });
 
-        gps.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
-                {
-                    if(!firsttime)
-                    sendData(1);
-                    else
-                        gps.setChecked(false);
-                }
-                else
-                {
-                    sendData(0);
-                }
-            }
-        });
 }
     private void sendData(int x)
     {
