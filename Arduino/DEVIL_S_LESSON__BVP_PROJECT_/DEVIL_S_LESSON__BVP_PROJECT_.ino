@@ -5,7 +5,20 @@
 #define BT_PIN1 2 // The digital pin to which the HC05 TX module is connected - TX
 #define BT_PIN2 3 // The digital pin to which the HC05 RX module is connected - RX
 #define SERVO_PIN 4 // The digital pin to which the servo motor is connected
-
+/*
+  DIRECTIONAL LOGIC
+  the 'dir' variable is for the direction being received
+  values : Inference
+  0 : Center / No touch / Straight
+  1 : North
+  2 : North-east
+  3 : East
+  4 : South-east
+  5 : South
+  6 : South-west
+  7 : West
+  8 : North-west
+*/
 /* The global variable that have been defined for the whole code*/
 int throttle; // Decides the speed of the motors
 int dir; // The direction in which the car has to move (The angles for the servo)
