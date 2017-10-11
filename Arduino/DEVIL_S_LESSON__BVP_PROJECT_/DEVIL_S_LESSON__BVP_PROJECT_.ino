@@ -1,12 +1,12 @@
 #include<Servo.h>
 #include<SoftwareSerial.h>
 
-#define SERVO_PIN 5 // The digital pin to which the Servo is attached
+#define SERVO_PIN 8 // The digital pin to which the Servo is attached
 #define BT_PINTX 4 // The digital pin to which the HC05 TX module is connected - TX
 #define BT_PINRX 5 // The digital pin to which the HC05 RX module is connected - RX
 #define BT_BAUD_RATE  115200 // The baud rate at which the HC05 module is operating. Default is 9600 (May be :-P)
-#define IN_1 = 6 ;
-#define IN_2 = 7 ;
+#define IN_1 6 
+#define IN_2 7 
 
 
 /*
@@ -118,19 +118,19 @@ void front(){
 }
 
 void front_right(){
-  myservo.write(135);
+  myservo.write(45);
   digitalWrite(IN_1,SPEED) ;
   digitalWrite(IN_2,LOW) ;
 }
 
 void right(){
-  myservo.write(180);
+  myservo.write(0);
   digitalWrite(IN_1,SPEED) ;
   digitalWrite(IN_2,LOW) ;
 }
 
 void back_right(){
-  myservo.write(135);
+  myservo.write(45);
   digitalWrite(IN_1,LOW) ;
   digitalWrite(IN_2,SPEED) ;
 }
@@ -142,19 +142,19 @@ void back(){
 }
 
 void back_left(){
-  myservo.write(45);
+  myservo.write(135);
   digitalWrite(IN_1,LOW) ;
   digitalWrite(IN_2,SPEED) ;
 }
 
 void left(){
-  myservo.write(0);
+  myservo.write(180);
   digitalWrite(IN_1,SPEED) ;
   digitalWrite(IN_2,LOW) ;
 }
 
 void front_left(){
-  myservo.write(45);
+  myservo.write(135);
   digitalWrite(IN_1,SPEED) ;
   digitalWrite(IN_2,LOW) ;
 }
